@@ -1,0 +1,15 @@
+@startuml
+
+class InfoAluno <<data>> {
+    nome: String
+    sobrenome: String
+    codigo: Int
+}
+
+class Aluno {
+    info: InfoAluno
+}
+
+Aluno *-- InfoAluno
+
+@enduml
