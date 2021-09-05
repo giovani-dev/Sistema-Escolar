@@ -22,4 +22,20 @@ class Aluno {
 DataToClass *-- Aluno
 InfoAluno *-- Aluno
 
+
+class InfoCurso <<data>> {
+    + nome: String
+    + sobrenome: String
+    + codigo: Int
+}
+
+class Curso {
+    info: InfoAluno
+
+    + equals(other: Any?): Boolean
+}
+
+DataToClass *-- Curso
+InfoCurso *-- Curso
+
 @enduml
