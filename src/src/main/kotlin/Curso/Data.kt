@@ -1,6 +1,7 @@
 package Curso
+import Base.InfoDataClass
 
 data class InfoCurso(
-    var nome: String,
-    var codigo: Int
-)
+    override var nome: String,
+    override var codigo: Int
+): InfoDataClass

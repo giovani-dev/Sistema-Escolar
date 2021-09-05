@@ -1,8 +1,10 @@
 package Curso
-import Base.DataToClass
+import Base.InfoInterface
+import Base.InfoDataClass
 
-class Curso: DataToClass {
-    lateinit override var info: Any
+
+class Curso: InfoInterface {
+    lateinit override var info: InfoDataClass
 
     constructor(nome: String, codigo: Int) {
         this.info = InfoCurso(nome, codigo)
