@@ -1,7 +1,10 @@
 @startuml
 
 
-interface InfoDataClass
+interface InfoDataClass{
+    + nome: String
+    + codigo: Int
+}
 
 
 interface InfoInterface {
@@ -36,6 +39,10 @@ class InfoCurso <<data>> {
     + nome: String
     + sobrenome: String
     + codigo: Int
+    + professor_titular: InfoProfessor
+    + professor_adjunto: InfoProfessor
+    + qtde_maxima_de_alunos: Int
+    + alunos_matriculados: List<InfoAluno>
 }
 
 InfoDataClass <|-- InfoCurso
