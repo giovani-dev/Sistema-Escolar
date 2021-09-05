@@ -1,11 +1,16 @@
 @startuml
 
 
-interface DataToClass {
-    # info: DataClass
+interface InfoDataClass
+
+
+interface InfoInterface {
+    # info: InfoDataClass
 
     + equals(other: Any?): Boolean
 }
+
+InfoDataClass *-- InfoInterface
 
 class InfoAluno <<data>> {
     + nome: String
@@ -13,15 +18,15 @@ class InfoAluno <<data>> {
     + codigo: Int
 }
 
+InfoDataClass <|-- InfoAluno
+
 class Aluno {
-    info: InfoAluno
+    info: InfoDataClass
 
     + equals(other: Any?): Boolean
 }
 
-DataToClass *-- Aluno
-InfoAluno *-- Aluno
-
+InfoInterface <|-- Aluno
 
 class InfoCurso <<data>> {
     + nome: String
@@ -29,13 +34,31 @@ class InfoCurso <<data>> {
     + codigo: Int
 }
 
+InfoDataClass <|-- InfoCurso
+
 class Curso {
-    info: InfoAluno
+    info: InfoDataClass
 
     + equals(other: Any?): Boolean
 }
 
-DataToClass *-- Curso
-InfoCurso *-- Curso
+InfoInterface <|-- Curso
+
+
+class InfoProfessor <<data>> {
+    + nome: String
+    + sobrenome: String
+    + codigo: Int
+}
+
+InfoDataClass <|-- InfoProfessor
+
+class Professor {
+    info: InfoDataClass
+
+    + equals(other: Any?): Boolean
+}
+
+InfoInterface <|-- Professor
 
 @enduml

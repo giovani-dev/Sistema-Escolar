@@ -1,7 +1,8 @@
 package Aluno
+import Base.InfoDataClass
 
 data class InfoAluno(
-    var nome: String,
+    override var nome: String,
     var sobrenome: String,
-    var codigo: Int
-)
+    override var codigo: Int
+    ): InfoDataClass
