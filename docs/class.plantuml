@@ -1,15 +1,25 @@
 @startuml
 
+
+interface DataToClass {
+    # info: DataClass
+
+    + equals(other: Any?): Boolean
+}
+
 class InfoAluno <<data>> {
-    nome: String
-    sobrenome: String
-    codigo: Int
+    + nome: String
+    + sobrenome: String
+    + codigo: Int
 }
 
 class Aluno {
     info: InfoAluno
+
+    + equals(other: Any?): Boolean
 }
 
-Aluno *-- InfoAluno
+DataToClass *-- Aluno
+InfoAluno *-- Aluno
 
 @enduml
