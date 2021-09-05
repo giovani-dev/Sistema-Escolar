@@ -10,6 +10,6 @@ class Aluno: InfoInterface {
     }
 
     override fun equals(other: Any?): Boolean {
-        return (other is Aluno) && (other.info == this.info)
+        return (other is Aluno) && (other.info.codigo == this.info.codigo)
     }
 }
