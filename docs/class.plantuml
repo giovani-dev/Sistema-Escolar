@@ -6,8 +6,10 @@ interface InfoDataClass
 
 interface InfoInterface {
     # info: InfoDataClass
+    # data: InfoDataClass
 
     + equals(other: Any?): Boolean
+    + create(): InfoInterface
 }
 
 InfoDataClass *-- InfoInterface
@@ -21,9 +23,11 @@ class InfoAluno <<data>> {
 InfoDataClass <|-- InfoAluno
 
 class Aluno {
-    info: InfoDataClass
+    # info: InfoDataClass
+    # data: InfoDataClass
 
     + equals(other: Any?): Boolean
+    + create(): InfoInterface
 }
 
 InfoInterface <|-- Aluno
@@ -37,9 +41,11 @@ class InfoCurso <<data>> {
 InfoDataClass <|-- InfoCurso
 
 class Curso {
-    info: InfoDataClass
+    # info: InfoDataClass
+    # data: InfoDataClass
 
     + equals(other: Any?): Boolean
+    + create(): InfoInterface
 }
 
 InfoInterface <|-- Curso
@@ -49,14 +55,22 @@ class InfoProfessor <<data>> {
     + nome: String
     + sobrenome: String
     + codigo: Int
+    + is_titular: Boolean
+    + is_adjunto: Boolean
+    + especialidade: String
+    + horas_monitoria: Int
 }
 
 InfoDataClass <|-- InfoProfessor
 
 class Professor {
-    info: InfoDataClass
+    # info: InfoDataClass
+    # data: InfoDataClass
 
     + equals(other: Any?): Boolean
+    + create(): InfoInterface
+    - is_titular(info: InfoDataClass): Boolean
+    - is_adjunto(info: InfoDataClass): Boolean
 }
 
 InfoInterface <|-- Professor
