@@ -11,6 +11,6 @@ class Curso: InfoInterface {
     }
 
     override fun equals(other: Any?): Boolean {
-        return (other is Curso) && (other.info == this.info)
+        return (other is Curso) && (other.info.codigo == this.info.codigo)
     }
 }
