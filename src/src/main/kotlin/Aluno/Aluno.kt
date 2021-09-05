@@ -1,7 +1,8 @@
 package Aluno
+import Base.DataToClass
 
-class Aluno {
-    lateinit var info: InfoAluno
+class Aluno: DataToClass {
+    lateinit override var info: Any
 
     constructor(nome: String, sobrenome: String, codigo: Int) {
         this.info = InfoAluno(nome, sobrenome, codigo)
