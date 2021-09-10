@@ -8,17 +8,13 @@ interface InfoInterface {
     + create(): InfoInterface
 }
 
-abstract InformacaoDaEntidade {
+abstract Pessoa {
     + {abstract} nome: String?
     + {abstract} codigo: Int?
+    + {abstract} sobrenome: String?
 
     + equals(other: Any?): Boolean
     + {abstract} create(): InfoInterface
-}
-InfoInterface <|-- InformacaoDaEntidade
-
-abstract Pessoa {
-    + {abstract} sobrenome: String
 }
 
 class Aluno {
@@ -28,10 +24,16 @@ class Aluno {
     + create(): InfoInterface
 }
 
-InformacaoDaEntidade <|-- Pessoa
+InfoInterface <|-- Pessoa
 Pessoa <|-- Aluno
 
-abstract Objeto
+abstract Objeto {
+    + {abstract} nome: String?
+    + {abstract} codigo: Int?
+
+    + equals(other: Any?): Boolean
+    + {abstract} create(): InfoInterface
+}
 
 class Curso {
     + nome: String?
@@ -46,7 +48,7 @@ class Curso {
     + create(): InfoInterface
 }
 
-InformacaoDaEntidade <|-- Objeto
+InfoInterface <|-- Objeto
 Objeto <|-- Curso
 
 class Professor {
