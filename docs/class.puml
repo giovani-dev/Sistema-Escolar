@@ -1,0 +1,75 @@
+@startuml
+
+interface InfoInterface {
+    + nome: String?
+    + codigo: Int?
+
+    + equals(other: Any?): Boolean
+    + create(): InfoInterface
+}
+
+abstract InformacaoDaEntidade {
+    + {abstract} nome: String?
+    + {abstract} codigo: Int?
+
+    + equals(other: Any?): Boolean
+    + {abstract} create(): InfoInterface
+}
+InfoInterface <|-- InformacaoDaEntidade
+
+abstract Pessoa {
+    + {abstract} sobrenome: String
+}
+
+class Aluno {
+    + nome: String?
+    + codigo: Int?
+    + sobrenome: String
+    + create(): InfoInterface
+}
+
+InformacaoDaEntidade <|-- Pessoa
+Pessoa <|-- Aluno
+
+abstract Objeto
+
+class Curso {
+    + nome: String?
+    + codigo: Int?
+
+    + professor_titular: InfoInterface
+    + professor_adjunto: InfoInterface
+    + qtde_maxima_de_alunos: Int
+    + alunos_matriculados: List<InfoInterface>
+
+    + equals(other: Any?): Boolean
+    + create(): InfoInterface
+}
+
+InformacaoDaEntidade <|-- Objeto
+Objeto <|-- Curso
+
+class Professor {
+    + nome: String?
+    + codigo: Int?
+    + sobrenome: String
+
+    + is_titular: Boolean
+    + is_adjunto: Boolean
+    + especialidade: String
+    + horas_monitoria: Int
+
+    + create(): InfoInterface
+}
+
+Pessoa <|-- Professor
+
+'class Matricula {
+'    + aluno: InfoInterface
+'    + curso: InfoInterface
+'    + data_matricula: Date
+'}
+'
+'InfoInterface *- Matricula
+
+@enduml
