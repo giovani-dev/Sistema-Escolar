@@ -1,9 +1,9 @@
 package Base
 
-interface InformacaoDaEntidade {
+interface InfoInterface {
     var nome: String?
     var codigo: Int?
 
     override fun equals(other: Any?): Boolean
-    fun create(): InformacaoDaEntidade
+    fun create(): InfoInterface
 }
