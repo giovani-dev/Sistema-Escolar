@@ -66,12 +66,28 @@ class Professor {
 
 Pessoa <|-- Professor
 
+interface MatriculaInterface {
+    + aluno: InfoInterface
+    + curso: InfoInterface
+    + data_matricula: Date
+}
+
 class Matricula {
     + aluno: InfoInterface
     + curso: InfoInterface
     + data_matricula: Date
 }
 
+class DigitalHouseManager {
+    + alunos: MutableList<InfoInterface>
+    + professores: MutableList<InfoInterface>
+    + cursos: MutableList<InfoInterface>
+    + matriculas: MutableList<Matricula>
+}
+
+Matricula *-- DigitalHouseManager
+InfoInterface *-- DigitalHouseManager
 InfoInterface *- Matricula
+
 
 @enduml

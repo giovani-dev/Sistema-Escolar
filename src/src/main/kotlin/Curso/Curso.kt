@@ -1,24 +1,24 @@
 package Curso
-import Base.InformacaoDaEntidade
+import Base.InfoInterface
 import Base.Objeto
 
 
 abstract class Curso: Objeto {
     override var nome: String?
     override var codigo: Int?
-    var professor_titular: InformacaoDaEntidade?
-    var professor_adjunto: InformacaoDaEntidade?
+    var professor_titular: InfoInterface?
+    var professor_adjunto: InfoInterface?
     var qtde_maxima_de_alunos: Int?
-    var alunos_matriculados: List<InformacaoDaEntidade>?
+    var alunos_matriculados: List<InfoInterface>?
 
 
     constructor(
         nome: String?,
         codigo: Int?,
-        professor_titular: InformacaoDaEntidade?,
-        professor_adjunto: InformacaoDaEntidade?,
+        professor_titular: InfoInterface?,
+        professor_adjunto: InfoInterface?,
         qtde_maxima_de_alunos: Int?,
-        alunos_matriculados: List<InformacaoDaEntidade>?
+        alunos_matriculados: List<InfoInterface>?
     ) {
         this.nome = nome
         this.codigo = codigo
@@ -32,5 +32,5 @@ abstract class Curso: Objeto {
         return (other is Curso) && (other.codigo == this.codigo)
     }
 
-    abstract override fun create(): InformacaoDaEntidade
+    abstract override fun create(): InfoInterface
 }

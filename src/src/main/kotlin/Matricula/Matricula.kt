@@ -1,10 +1,10 @@
 package Matricula
-import Base.InformacaoDaEntidade
+import Base.InfoInterface
 import java.util.*
 
 class Matricula(
-    var aluno: InformacaoDaEntidade,
-    var curso: InformacaoDaEntidade
+    var aluno: InfoInterface,
+    var curso: InfoInterface
 ) {
     private var data: Date = Date()
 }
