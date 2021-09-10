@@ -1,67 +1,63 @@
 package Professor
-import Base.InfoDataClass
-import Base.InfoInterface
+import Base.InformacaoDaEntidade
 import Utils.DadosInvalidos
 import Utils.ErroInesperado
+import Base.Pessoa
 
-class Professor : InfoInterface {
-    override var info: InfoDataClass
-    override lateinit var data: InfoDataClass
+class Professor : Pessoa {
+    override var codigo: Int?
+    override var nome: String?
+    override var sobrenome: String?
+    var tempo_casa: String
+    var is_titular: Boolean
+    var is_adjunto: Boolean
+    var especialidade: String
+    var horas_monitoria: Int
 
     constructor(
+        codigo: Int,
         nome: String,
         sobrenome: String,
         tempo_casa: String,
-        codigo: Int,
-        especialidade: String?,
-        horas_monitoria: Int?,
+        is_titular: Boolean,
         is_adjunto: Boolean,
-        is_titular: Boolean
+        especialidade: String,
+        horas_monitoria: Int
     ) {
-        this.info = InfoProfessor(
-            nome = nome,
-            sobrenome = sobrenome,
-            tempo_casa = tempo_casa,
-            codigo = codigo,
-            especialidade = especialidade,
-            horas_monitoria = horas_monitoria,
-            is_adjunto = is_adjunto,
-            is_titular = is_titular
-        )
+        this.codigo = codigo
+        this.nome = nome
+        this.sobrenome = sobrenome
+        this.tempo_casa = tempo_casa
+        this.is_titular = is_titular
+        this.is_adjunto = is_adjunto
+        this.especialidade = especialidade
+        this.horas_monitoria = horas_monitoria
     }
 
-    override fun equals(other: Any?): Boolean {
-        return (other is Professor) && (other.info.codigo == this.info.codigo)
-    }
-
-    private fun is_titular(info: InfoDataClass?): Boolean {
+    private fun validate_is_titular(): Boolean {
         return (
-            info is InfoProfessor &&
-                info.is_titular &&
-                !info.is_adjunto &&
-                info.especialidade != null &&
-                info.horas_monitoria == null
+            this.is_titular &&
+            !this.is_adjunto &&
+            this.especialidade != null &&
+            this.horas_monitoria == null
         )
     }
 
-    private fun is_adjunto(info: InfoDataClass?): Boolean {
+    private fun validate_is_adjunto(): Boolean {
         return (
-            info is InfoProfessor &&
-                !info.is_titular &&
-                info.is_adjunto &&
-                info.especialidade == null &&
-                info.horas_monitoria != null
+            !this.is_titular &&
+            this.is_adjunto &&
+            this.especialidade == null &&
+            this.horas_monitoria != null
         )
     }
 
-    override fun create(): InfoInterface {
-        val check_titular: Boolean = this.is_titular(this.info)
-        val check_adjunto: Boolean = this.is_adjunto(this.info)
-        if(check_titular && !check_adjunto){
-            this.data = this.info
-        } else if(!check_titular && check_adjunto) {
-            this.data = this.info
-        } else if(!check_titular && !check_adjunto) {
+    override fun create(): InformacaoDaEntidade {
+        val check_is_titular: Boolean = this.validate_is_titular()
+        val check_is_adjunto: Boolean = this.validate_is_adjunto()
+        if(check_is_titular && !check_is_adjunto || !check_is_titular && check_is_adjunto){
+            return this
+        } else if(!check_is_titular && !check_is_adjunto) {
             throw DadosInvalidos()
         } else {
             throw ErroInesperado()
