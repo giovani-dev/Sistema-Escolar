@@ -1,15 +1,20 @@
 package Aluno
-import Base.InfoInterface
-import Base.InfoDataClass
+import Base.InformacaoDaEntidade
+import Base.Pessoa
 
-class Aluno: InfoInterface {
-    lateinit override var info: InfoDataClass
+class Aluno: Pessoa {
+    override var nome: String?
+    override var codigo: Int?
+    override var sobrenome: String?
+
 
     constructor(nome: String, sobrenome: String, codigo: Int) {
-        this.info = InfoAluno(nome, sobrenome, codigo)
+        this.nome = nome
+        this.sobrenome = sobrenome
+        this.codigo = codigo
     }
 
-    override fun equals(other: Any?): Boolean {
-        return (other is Aluno) && (other.info.codigo == this.info.codigo)
+    override fun create(): InformacaoDaEntidade {
+        return this
     }
 }
