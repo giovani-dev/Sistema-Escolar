@@ -64,12 +64,12 @@ class Professor {
 
 Pessoa <|-- Professor
 
-'class Matricula {
-'    + aluno: InfoInterface
-'    + curso: InfoInterface
-'    + data_matricula: Date
-'}
-'
-'InfoInterface *- Matricula
+class Matricula {
+    + aluno: InfoInterface
+    + curso: InfoInterface
+    + data_matricula: Date
+}
+
+InfoInterface *- Matricula
 
 @enduml
