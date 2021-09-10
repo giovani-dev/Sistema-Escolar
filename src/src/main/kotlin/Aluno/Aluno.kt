@@ -1,5 +1,5 @@
 package Aluno
-import Base.InformacaoDaEntidade
+import Base.InfoInterface
 import Base.Pessoa
 
 class Aluno: Pessoa {
@@ -14,7 +14,7 @@ class Aluno: Pessoa {
         this.codigo = codigo
     }
 
-    override fun create(): InformacaoDaEntidade {
+    override fun create(): InfoInterface {
         return this
     }
 }

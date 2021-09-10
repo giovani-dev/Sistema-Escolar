@@ -1,5 +1,5 @@
 package Professor
-import Base.InformacaoDaEntidade
+import Base.InfoInterface
 import Utils.DadosInvalidos
 import Utils.ErroInesperado
 import Base.Pessoa
@@ -52,7 +52,7 @@ class Professor : Pessoa {
         )
     }
 
-    override fun create(): InformacaoDaEntidade {
+    override fun create(): InfoInterface {
         val check_is_titular: Boolean = this.validate_is_titular()
         val check_is_adjunto: Boolean = this.validate_is_adjunto()
         if(check_is_titular && !check_is_adjunto || !check_is_titular && check_is_adjunto){
