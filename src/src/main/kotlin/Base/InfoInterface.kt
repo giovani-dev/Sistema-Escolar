@@ -5,5 +5,4 @@ interface InfoInterface {
     var codigo: Int?
 
     override fun equals(other: Any?): Boolean
-    fun create(): InfoInterface
 }

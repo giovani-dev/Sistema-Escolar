@@ -46,6 +46,8 @@ class Curso {
 
     + equals(other: Any?): Boolean
     + create(): InfoInterface
+    + adicionarUmAluno(umAluno: InfoInterface): Boolean
+    + excluirAluno(umAluno: InfoInterface): Boolean
 }
 
 InfoInterface <|-- Objeto
@@ -83,6 +85,15 @@ class DigitalHouseManager {
     + professores: MutableList<InfoInterface>
     + cursos: MutableList<InfoInterface>
     + matriculas: MutableList<Matricula>
+
+    + registrarCurso(nome: String, codigoCurso: Int, quantidadeMaximaDeAlunos: Int): DigitalHouseManager
+    + excluirCurso(codigoCurso: Int): Boolean
+    + excluirProfessor(codigoCurso: Int): Boolean
+    + registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, quantidadeDeHoras: Int)
+    + registrarProfessorTitular(nome: String, sobrenome: String, codigoProfessor: Int, especialidade: String)
+    + matricularAluno(nome: String, sobrenome: String, codigoAluno: Int)
+    + matricularAlunoEmCurso(codigoAluno: Int, codigoCurso: Int)
+    + alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int)
 }
 
 Matricula *-- DigitalHouseManager

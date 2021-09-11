@@ -14,7 +14,11 @@ class Aluno: Pessoa {
         this.codigo = codigo
     }
 
-    override fun create(): InfoInterface {
-        return this
+    override fun equals(other: Any?): Boolean {
+        if(other is InfoInterface){
+            return other.codigo == this.codigo
+        } else {
+            return other == this.codigo
+        }
     }
 }

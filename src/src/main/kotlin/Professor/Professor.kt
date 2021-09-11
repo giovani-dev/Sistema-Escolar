@@ -8,20 +8,20 @@ class Professor : Pessoa {
     override var codigo: Int?
     override var nome: String?
     override var sobrenome: String?
-    var tempo_casa: String
+    var tempo_casa: Int
     var is_titular: Boolean
     var is_adjunto: Boolean
-    var especialidade: String
+    var especialidade: String?
     var horas_monitoria: Int
 
     constructor(
         codigo: Int,
         nome: String,
         sobrenome: String,
-        tempo_casa: String,
+        tempo_casa: Int,
         is_titular: Boolean,
         is_adjunto: Boolean,
-        especialidade: String,
+        especialidade: String?,
         horas_monitoria: Int
     ) {
         this.codigo = codigo
@@ -32,6 +32,7 @@ class Professor : Pessoa {
         this.is_adjunto = is_adjunto
         this.especialidade = especialidade
         this.horas_monitoria = horas_monitoria
+        this.validate()
     }
 
     private fun validate_is_titular(): Boolean {
@@ -39,7 +40,8 @@ class Professor : Pessoa {
             this.is_titular &&
             !this.is_adjunto &&
             this.especialidade != null &&
-            this.horas_monitoria == null
+            this.horas_monitoria == null ||
+            this.horas_monitoria == 0
         )
     }
 
@@ -48,20 +50,16 @@ class Professor : Pessoa {
             !this.is_titular &&
             this.is_adjunto &&
             this.especialidade == null &&
-            this.horas_monitoria != null
+            this.horas_monitoria > 0
         )
     }
 
-    override fun create(): InfoInterface {
-        val check_is_titular: Boolean = this.validate_is_titular()
-        val check_is_adjunto: Boolean = this.validate_is_adjunto()
-        if(check_is_titular && !check_is_adjunto || !check_is_titular && check_is_adjunto){
-            return this
-        } else if(!check_is_titular && !check_is_adjunto) {
+    private fun validate() {
+        if(!this.validate_is_titular() && !this.validate_is_adjunto()) {
             throw DadosInvalidos()
-        } else {
-            throw ErroInesperado()
         }
-        return this
+//        else {
+//            throw ErroInesperado()
+//        }
     }
 }
