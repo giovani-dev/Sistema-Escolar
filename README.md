@@ -1,2 +1,2 @@
 # Sistema-Escolar
-<img src="http://jgraph.github.io/drawio-github/self-editing.svg">
+<img src="https://raw.githubusercontent.com/giovani-dev/Sistema-Escolar/master/docs/diagrama_classes.png?token=APN6NI2BTSXZZ5WOBOGTEQTBHQ33S">
