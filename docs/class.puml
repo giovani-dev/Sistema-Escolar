@@ -1,0 +1,104 @@
+@startuml
+
+interface InfoInterface {
+    + nome: String?
+    + codigo: Int?
+
+    + equals(other: Any?): Boolean
+    + create(): InfoInterface
+}
+
+abstract Pessoa {
+    + {abstract} nome: String?
+    + {abstract} codigo: Int?
+    + {abstract} sobrenome: String?
+
+    + equals(other: Any?): Boolean
+    + {abstract} create(): InfoInterface
+}
+
+class Aluno {
+    + nome: String?
+    + codigo: Int?
+    + sobrenome: String
+    + create(): InfoInterface
+}
+
+InfoInterface <|-- Pessoa
+Pessoa <|-- Aluno
+
+abstract Objeto {
+    + {abstract} nome: String?
+    + {abstract} codigo: Int?
+
+    + equals(other: Any?): Boolean
+    + {abstract} create(): InfoInterface
+}
+
+class Curso {
+    + nome: String?
+    + codigo: Int?
+
+    + professor_titular: InfoInterface
+    + professor_adjunto: InfoInterface
+    + qtde_maxima_de_alunos: Int
+    + alunos_matriculados: List<InfoInterface>
+
+    + equals(other: Any?): Boolean
+    + create(): InfoInterface
+    + adicionarUmAluno(umAluno: InfoInterface): Boolean
+    + excluirAluno(umAluno: InfoInterface): Boolean
+}
+
+InfoInterface <|-- Objeto
+Objeto <|-- Curso
+
+class Professor {
+    + nome: String?
+    + codigo: Int?
+    + sobrenome: String
+
+    + is_titular: Boolean
+    + is_adjunto: Boolean
+    + especialidade: String
+    + horas_monitoria: Int
+
+    + create(): InfoInterface
+}
+
+Pessoa <|-- Professor
+
+interface MatriculaInterface {
+    + aluno: InfoInterface
+    + curso: InfoInterface
+    + data_matricula: Date
+}
+
+class Matricula {
+    + aluno: InfoInterface
+    + curso: InfoInterface
+    + data_matricula: Date
+}
+
+class DigitalHouseManager {
+    + alunos: MutableList<InfoInterface>
+    + professores: MutableList<InfoInterface>
+    + cursos: MutableList<InfoInterface>
+    + matriculas: MutableList<Matricula>
+
+    + registrarCurso(nome: String, codigoCurso: Int, quantidadeMaximaDeAlunos: Int): DigitalHouseManager
+    + excluirCurso(codigoCurso: Int): Boolean
+    + excluirProfessor(codigoCurso: Int): Boolean
+    + registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, quantidadeDeHoras: Int)
+    + registrarProfessorTitular(nome: String, sobrenome: String, codigoProfessor: Int, especialidade: String)
+    + matricularAluno(nome: String, sobrenome: String, codigoAluno: Int)
+    + matricularAlunoEmCurso(codigoAluno: Int, codigoCurso: Int)
+    + alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int)
+}
+
+Matricula *-- DigitalHouseManager
+InfoInterface *-- DigitalHouseManager
+InfoInterface *- Matricula
+
+
+@enduml
